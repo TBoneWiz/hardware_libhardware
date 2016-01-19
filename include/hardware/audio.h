@@ -448,7 +448,7 @@ static inline size_t audio_stream_frame_size(const struct audio_stream *s)
     size_t chan_samp_sz;
     audio_format_t format = s->get_format(s);
 
-    if (audio_is_linear_pcm(format)) {
+    if (audio_has_proportional_frames(format)) {
         chan_samp_sz = audio_bytes_per_sample(format);
         return popcount(s->get_channels(s)) * chan_samp_sz;
     }
@@ -464,7 +464,7 @@ static inline size_t audio_stream_out_frame_size(const struct audio_stream_out *
     size_t chan_samp_sz;
     audio_format_t format = s->common.get_format(&s->common);
 
-    if (audio_is_linear_pcm(format)) {
+    if (audio_has_proportional_frames(format)) {
         chan_samp_sz = audio_bytes_per_sample(format);
         return audio_channel_count_from_out_mask(s->common.get_channels(&s->common)) * chan_samp_sz;
     }
@@ -480,7 +480,7 @@ static inline size_t audio_stream_in_frame_size(const struct audio_stream_in *s)
     size_t chan_samp_sz;
     audio_format_t format = s->common.get_format(&s->common);
 
-    if (audio_is_linear_pcm(format)) {
+    if (audio_has_proportional_frames(format)) {
         chan_samp_sz = audio_bytes_per_sample(format);
         return audio_channel_count_from_in_mask(s->common.get_channels(&s->common)) * chan_samp_sz;
     }
