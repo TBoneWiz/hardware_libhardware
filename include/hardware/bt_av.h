@@ -115,7 +115,7 @@ typedef struct {
      * Register the BtAv callbacks
      */
     bt_status_t (*init)( btav_callbacks_t* callbacks , int max_a2dp_connections,
-                        int a2dp_multicast_state, const char *offload_cap);
+                        int a2dp_multicast_state);
 
     /** connect to headset */
     bt_status_t (*connect)( bt_bdaddr_t *bd_addr );
